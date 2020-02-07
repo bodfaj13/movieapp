@@ -58,6 +58,10 @@
           img {
             min-height: 20rem;
             max-height: 20rem;
+            @include mobile() {
+              min-height: 25rem;
+              max-height: 25rem;
+            }
           }
         }
         .ant-card-body {
