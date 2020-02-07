@@ -53,6 +53,8 @@
         max-height: 30rem;
         @include mobile() {
           width: 100% !important;
+          min-height: 33rem;
+          max-height: 33rem;
         }
         .ant-card-cover {
           img {

@@ -55,6 +55,7 @@ i.e If rating was set to 5, you would expect to see all movies with a rating of 
 ## Extermal Libraries 
 1. React Ant Design
 2. Axios
+3. Firebase Hosting
 
 ## Extermal End Point
 The Movie Databse API
