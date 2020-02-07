@@ -1,4 +1,6 @@
 # movieapp
+## HOSTING URL
+Open [https://movieapp-5800f.firebaseapp.com/](https://movieapp-5800f.firebaseapp.com/) to view it in the browser.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -42,9 +44,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 
 # App Solution
-## HOSTING URL
-https://movieapp-5800f.firebaseapp.com/
-
 ## TODO Done ✅
 1. Display a list of movies, each showing their title, genres and poster image
 2. The movies should be ordered by popularity (most popular first - popularity property)
