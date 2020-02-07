@@ -1,0 +1,20 @@
+// responsive design mixins 
+@mixin desktop() {
+  @media (min-width: 	992px) { @content ; }
+}
+
+@mixin tablet() {
+	@media (min-width: 668px) and (max-width: 899px) { @content ; }
+}
+
+@mixin mini-desktop() {
+	@media (min-width: 1005px) and (max-width: 1251px) { @content ; }
+}
+
+@mixin mobile() {
+  @media (max-width: 768px) { @content ; }
+}
+
+@mixin smallmobile() {
+	@media (min-width: 375px) { @content ; }
+}

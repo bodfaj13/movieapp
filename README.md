@@ -1,9 +1,11 @@
+# movieapp
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `yarn` OR `npm install` 
 ### `yarn start`
 
 Runs the app in the development mode.<br />
@@ -37,6 +39,25 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## App Solution
 
-# movieapp
+
+# App Solution
+## HOSTING URL
+https://movieapp-5800f.firebaseapp.com/
+
+## TODO Done ✅
+1. Display a list of movies, each showing their title, genres and poster image
+2. The movies should be ordered by popularity (most popular first - popularity property)
+3. Movies should be filterable by multiple genres, the user should have the ability to toggle movies depending on all of its assigned genres
+4. For example if 'Action' and 'Drama' genres are selected, then the listed movies must have both 'Action' and 'Drama' genres
+Movies should also be filterable by their rating (vote_average property)
+i.e If rating was set to 5, you would expect to see all movies with a rating of 5 or higher
+5. .The input APIs should only be called once
+
+## Extermal Libraries 
+1. React Ant Design
+2. Axios
+
+## Extermal End Point
+The Movie Databse API
+
