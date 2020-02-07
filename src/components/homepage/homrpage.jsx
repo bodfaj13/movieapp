@@ -201,7 +201,6 @@ export default class Homrpage extends Component {
                         <Col lg={8} sm={24} md={12} key={movie.id}>
                           <Card
                             hoverable
-                            style={{ width: 240 }}
                             cover={<img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />}
                           >
                             <h3 className="novie-title">{movie.title}</h3>
