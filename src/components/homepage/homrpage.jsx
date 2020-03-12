@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, Checkbox, Slider, Icon, Result, Button } from 'antd'
+import { Row, Col, Card, Checkbox, Slider, Icon, Result, Button, Pagination } from 'antd'
 import axios from "axios"
 import { appDetails } from '../../config/config'
 
@@ -14,7 +14,8 @@ export default class Homrpage extends Component {
       moviesBasedOnPopularity: [],
       preload: true,
       genreWanted: [],
-      inputValue: 3
+      inputValue: 3,
+      currentPage: 1,
     }
   }
 
@@ -35,7 +36,8 @@ export default class Homrpage extends Component {
     this.setState({
       currentlyShowing,
       inputValue: value,
-      genreWanted: []
+      genreWanted: [],
+      currentPage: 1
     })
   };
 
@@ -65,7 +67,8 @@ export default class Homrpage extends Component {
     this.setState({
       currentlyShowing,
       genreWanted: newGenreWanted,
-      inputValue: 3
+      inputValue: 3,
+      currentPage: 1
     })
   }
 
@@ -101,6 +104,8 @@ export default class Homrpage extends Component {
 
       // get initial movie list 
       let movies = res.data.results
+
+      console.log(movies)
 
       // filter the movies list to get only movies that have ratings this within the range of 0 and 10 
       let moviesBasedOnRangeRatings = movies.filter((movie) => Math.round(movie.vote_average) <= 10)
@@ -153,12 +158,28 @@ export default class Homrpage extends Component {
     this.setState({
       genreWanted: [],
       currentlyShowing: moviesBasedOnDefaultRating,
-      inputValue: 3
+      inputValue: 3,
+      currentPage: 1
     })
   }
 
+  // pagination change
+  onPagiChange = page => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+    this.setState({
+      currentPage: page
+    });
+  }
+
   render() {
-    const { genres, currentlyShowing, preload, inputValue } = this.state
+    const { genres, currentlyShowing, preload, inputValue, currentPage } = this.state
+    let start = (currentPage - 1) * 6
+    let end = (6 * currentPage)
+    let realEnd = end > currentlyShowing.length ? currentlyShowing.length : end
     return (
       preload ?
         <div className="x-loader">
@@ -197,17 +218,21 @@ export default class Homrpage extends Component {
                   {/* check of the currentlyShowing lenght is greater than 0, if yes, display the currentlyShowing else  display the warning */}
                   {
                     currentlyShowing.length > 0 ?
-                      currentlyShowing.map((movie) => (
-                        <Col lg={8} sm={24} md={12} key={movie.id}>
-                          <Card
-                            hoverable
-                            cover={<img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />}
-                          >
-                            <h3 className="novie-title">{movie.title}</h3>
-                            <span><b>Genres:</b> {this.getGenereNames(movie.genre_ids)}</span>
-                          </Card>
-                        </Col>
-                      ))
+                      <React.Fragment>
+                        {
+                          currentlyShowing.slice(start, realEnd).map((movie) => (
+                            <Col lg={8} sm={24} md={12} key={movie.id}>
+                              <Card
+                                hoverable
+                                cover={<img alt={movie.title} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />}
+                              >
+                                <h3 className="novie-title">{movie.title}</h3>
+                                <span><b>Genres:</b> {this.getGenereNames(movie.genre_ids)}</span>
+                              </Card>
+                            </Col>
+                          ))
+                        }
+                      </React.Fragment>
                       :
                       <Result
                         status="warning"
@@ -218,6 +243,10 @@ export default class Homrpage extends Component {
                       />
                   }
                 </Row>
+                {
+                  currentlyShowing.length === 0 ? null :
+                    <Pagination total={currentlyShowing.length} onChange={this.onPagiChange} defaultPageSize={6} current={currentPage} />
+                }
               </Col>
             </Row>
           </div>
